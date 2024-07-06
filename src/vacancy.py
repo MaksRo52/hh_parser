@@ -5,29 +5,23 @@ class Vacancy:
     salary: int  # Зарплата
     url: str  # Ссылка
 
-    def __init__(self, name, description, salary, url):
+    def __init__(self, name, area, salary, url):
         self.name = name
-        self.description = description
-        self.salary = salary
+        self.area = area
+        self.__validate_salary(salary)
         self.url = url
+
+    def __validate_salary(self, salary):
+        """Формирование информации по зарплате"""
+        if salary is None:
+            self.salary_from = 0
+            self.salary_to = 0
+        else:
+            self.salary_from = salary["from"] if salary["from"] else 0
+            self.salary_to = salary["to"] if salary["to"] else 0
 
     def __str__(self):
         return (f"{self.name}\n"
                 f"Город: {self.area}\n"
-                f"Зарплата: {self.salary if self.salary else 'Зарплата не указана'}\n"
+                f"Зарплата от {self.salary_from} до {self.salary_to}\n"
                 f"Ссылка: {self.url}")
-
-    @classmethod
-    def new_vacancy(cls, vacancy):
-        name = vacancy.get("name")
-        area = vacancy.get("area").get("name")
-        if vacancy.get("salary"):
-            if vacancy.get("salary").get("from"):
-                salary = int(vacancy.get("salary").get("from"))
-            else:
-                salary = 0
-        else:
-            salary = "Не указана"
-        url = vacancy.get("url")
-        return cls(name, area, salary, url)
-

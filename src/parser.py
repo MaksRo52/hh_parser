@@ -21,7 +21,7 @@ class HH(Parser):
         self.vacancies = []
 
     def load_vacancies(self):
-
+        """Получение вакансий с сайта"""
         while self.params.get('page') != 1:
             response = requests.get(self.url, headers=self.headers, params=self.params)
             vacancies = response.json()['items']
