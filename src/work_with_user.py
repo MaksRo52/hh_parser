@@ -17,8 +17,7 @@ class WorkUser:
         sort_by_salary = sorted(self.vacancies, reverse=True)
         self.vacancies = sort_by_salary[:top_n]
 
-
-    def print_vacancys(self):
+    def print_vacancies(self):
         """Перечисление списка вакансий"""
         for vacancy in self.vacancies:
             print(vacancy)
