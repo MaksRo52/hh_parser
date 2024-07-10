@@ -17,6 +17,7 @@ class WorkUser:
         sort_by_salary = sorted(self.vacancies, reverse=True)
         self.vacancies = sort_by_salary[:top_n]
 
+
     def print_vacancies(self):
         """Перечисление списка вакансий"""
         for vacancy in self.vacancies:
@@ -24,6 +25,6 @@ class WorkUser:
             print('-' * 50)
 
     def filter_name(self):
-        """Фильтр по ключевому слову"""
-        value = input("Введите ключевое слово для поиска")
+        """Отбор по ключевому слову"""
+        value = input("Введите ключевое слово для поиска: ")
         self.vacancies = [vacancy for vacancy in self.vacancies if value in vacancy.name]
