@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-import os.path
 import json
 from src.vacancy import Vacancy
 
@@ -20,8 +19,8 @@ class WorkWithFile(ABC):
 
 class SaveJson(WorkWithFile):
     """Класс для работы с json"""
-    def __init__(self, abs_path="vacancies.json"):
-        self.abs_path = f"data/{abs_path}"
+    def __init__(self, value='vacancies.json'):
+        self.abs_path = f'data/{value}'
 
     def edit_file(self, data):
         with open(self.abs_path, "w", encoding="utf-8") as file:
@@ -36,7 +35,7 @@ class SaveJson(WorkWithFile):
                 name=vacancy['name'],
                 area=vacancy['area'],
                 salary=vacancy['salary'],
-                url=vacancy['url']))
+                url=vacancy['alternate_url']))
         return vacancies
 
     def delete_file(self):
