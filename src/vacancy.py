@@ -20,8 +20,11 @@ class Vacancy:
             self.salary_from = salary["from"] if salary["from"] else 0
             self.salary_to = salary["to"] if salary["to"] else 0
 
+    def __lt__(self, other):
+        return self.salary_from < other.salary_from
+
     def __str__(self):
         return (f"{self.name}\n"
-                f"Город: {self.area}\n"
+                f"Город: {self.area['name']}\n"
                 f"Зарплата от {self.salary_from} до {self.salary_to}\n"
                 f"Ссылка: {self.url}")
